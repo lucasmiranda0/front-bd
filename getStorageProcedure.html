@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.6.4.js"></script>
+    <title>Visualização da Storage Procedure</title>
+</head>
+<body>
+    <div class="display"></div>
+    <script>
+        $.getJSON('http://localhost:8080/customers/sp', function(data) {
+            var display = ``;
+            for (let i = 0; i < data.length; i++) {     
+                display = display + `Customer ID: ${data[i].customerID}<br>
+                Company Name: ${data[i].companyName}<br>
+                Contact Name: ${data[i].contactName}<br>
+                Contact Title: ${data[i].contactTitle}<br>
+                Address: ${data[i].address}<br>
+                City: ${data[i].city}<br>
+                Region: ${data[i].region}<br>
+                Postal Code: ${data[i].postalCode}<br>
+                Country: ${data[i].country}<br>
+                Phone: ${data[i].phone}<br>
+                Fax: ${data[i].fax}<br>
+                <br>`
+            }
+            $(".display").html(display);
+        });
+    </script>
+</body>
+</html>
