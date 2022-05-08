@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.6.4.js"></script>
+    <title>Inserção de Clientes</title>
+</head>
+<body>
+    <div class="display">
+        <form>
+            <label for="customerID">Customer ID:</label><br>
+            <input type="text" id="customerID" name="customerID"><br>
+            <label for="contactTitle">Contact title:</label><br>
+            <input type="text" id="contactTitle" name="contactTitle"><br>
+            <label for="region">Region:</label><br>
+            <input type="text" id="region" name="region"><br>
+            <label for="country">Country:</label><br>
+            <input type="text" id="country" name="country"><br>
+            <label for="companyName">Company name:</label><br>
+            <input type="text" id="companyName" name="companyName"><br>
+            <label for="contactName">Contact name:</label><br>
+            <input type="text" id="contactName" name="contactName"><br>
+            <label for="address">Address:</label><br>
+            <input type="text" id="address" name="address"><br>
+            <label for="city">City:</label><br>
+            <input type="text" id="city" name="city"><br>
+            <label for="postalCode">Postal Code:</label><br>
+            <input type="text" id="postalCode" name="postalCode"><br>
+            <label for="phone">Phone:</label><br>
+            <input type="text" id="phone" name="phone"><br>
+            <label for="fax">Fax:</label><br>
+            <input type="text" id="fax" name="fax">
+        </form>
+        <button onclick="teste()">Post</button>
+        <p id="a"></p>
+        <p id="b"></p>
+        <p id="c"></p>
+        <p id="d"></p>
+        <p id="e"></p>
+        <p id="f"></p>
+        <p id="g"></p>
+        <p id="h"></p>
+        <p id="i"></p>
+        <p id="j"></p>
+        <p id="k"></p>
+    </div>
+    <script>
+        function teste() {   
+            const customerID = document.getElementById('customerID').value;             
+            const a = document.getElementById('a');
+            a.innerHTML = customerID;
+            const contactTitle = document.getElementById('contactTitle').value;             
+            const b = document.getElementById('b');
+            b.innerHTML = contactTitle;
+            const region = document.getElementById('region').value;             
+            const c = document.getElementById('c');
+            c.innerHTML = region;
+            const country = document.getElementById('country').value;             
+            const d = document.getElementById('d');
+            d.innerHTML = country;
+            const companyName = document.getElementById('companyName').value;             
+            const e = document.getElementById('e');
+            e.innerHTML = companyName;
+            const contactName = document.getElementById('contactName').value;             
+            const f = document.getElementById('f');
+            f.innerHTML = contactName;
+            const address = document.getElementById('address').value;             
+            const g = document.getElementById('g');
+            g.innerHTML = address;
+            const city = document.getElementById('city').value;             
+            const h = document.getElementById('h');
+            h.innerHTML = city;
+            const postalCode = document.getElementById('postalCode').value;             
+            const i = document.getElementById('i');
+            i.innerHTML = postalCode;
+            const phone = document.getElementById('phone').value;             
+            const j = document.getElementById('j');
+            j.innerHTML = phone;
+            const fax = document.getElementById('fax').value;             
+            const k = document.getElementById('k');
+            k.innerHTML = fax;
+        
+
+            var xhr = new XMLHttpRequest();
+            var url = "http://localhost:8080/customers";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(json.email + ", " + json.password);
+                }
+            };
+            var data = JSON.stringify({
+                "region": region,
+                "country": country,
+                "companyName": companyName,
+                "contactName": contactName,
+                "address": address,
+                "city": city,
+                "postalCode": postalCode,
+                "phone": phone,
+                "fax": fax,
+                "customerID": customerID,
+                "contactTitle": contactTitle
+            });
+            console.log(data);
+            xhr.send(data);
+        }
+    </script>
+    <!--
+    <script>
+        var xhr = new XMLHttpRequest();
+        var url = "http://localhost:8080/customers";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var json = JSON.parse(xhr.responseText);
+                console.log(json.email + ", " + json.password);
+            }
+        };
+        var data = JSON.stringify({
+            "region": null,
+            "country": "brasolio",
+            "companyName": "Zebra",
+            "contactName": "Zeb",
+            "address": "Zebra St",
+            "city": "Zambia",
+            "postalCode": null,
+            "phone": null,
+            "fax": null,
+            "customerID": "ZWX",
+            "contactTitle": "CEO"
+        });
+        xhr.send(data);
+    </script>
+    -->
+</body>
+</html>
