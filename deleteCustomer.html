@@ -8,12 +8,23 @@
     <title>Remoção de Cliente</title>
 </head>
 <body>
-    <div class="display"></div>
+    <div id="botao">        
+        <form>
+            <label for="ide">Digite o id que deverá ser eliminado: </label><br>
+            <input type="text" id="ide" onblur="getVal()"><br>        
+        </form> 
+    </div>
+    <div class="display" id="delete-request"></div>
     <script>
-        
-        const element = document.querySelector('#delete-request .status');
-        fetch('http://localhost:8080/customers/ZZT', { method: 'DELETE' })
-            .then(() => element.innerHTML = 'Delete successful');
+        function getVal() {
+            var url = 'http://localhost:8080/customers/';
+            var val = document.getElementById('ide').value;
+            url = url + val;
+            console.log(url);
+            const element = document.getElementById('delete-request');
+            fetch(url, { method: 'DELETE' })
+                .then(() => element.innerHTML = 'Delete successful');
+        }               
     </script>
 </body>
 </html>
